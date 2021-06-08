@@ -66,7 +66,6 @@ const app = new Vue({
         : flagCode === "hi" ? flagCode = "in" 
         : flagCode = flagCode;
         
-
         return `https://flagcdn.com/28x21/${flagCode}.png`;
     }
 
