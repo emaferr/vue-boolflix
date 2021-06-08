@@ -17,7 +17,7 @@ const app = new Vue({
 
         urlFilms : 'https://api.themoviedb.org/3/search/movie?api_key=b9f1f2833add21394f701a0d15da73aa&query=',
 
-        // urlSerie : 'https://api.themoviedb.org/3/search/movie?api_key=b9f1f2833add21394f701a0d15da73aa&query=',
+        urlSerie : 'https://api.themoviedb.org/3/search/tv?api_key=b9f1f2833add21394f701a0d15da73aa&query=',
 
         risultato : [],
 
@@ -40,12 +40,27 @@ const app = new Vue({
             this.risultato = resp.data.results;
             
         })
+
+        axios
+
+        .get(this.urlSerie + this.input)
+
+        .then(resp => {
+
+            this.risultato = resp.data.results;
+            
+        })
+
         .catch(error => {
             console.error(error);
             this.error = "Ci dispiace!, il servizio non è raggiungibile al momento";
         });
 
+        console.log(risultato);
+
        }, 
+
+       
 
     },
 

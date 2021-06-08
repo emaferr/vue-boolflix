@@ -45,8 +45,8 @@
 
               <div v-for="(film, index) in risultato" class="film">
                 <img :src="'https://image.tmdb.org/t/p/w200/' + film.poster_path"  alt="">
-                <h2 class="titolo">{{film.title}}</h2>
-                <h2 class="titolo_originale">{{film.original_title}}</h2>
+                <h2 class="titolo">{{film.title || film.name}}</h2>
+                <h2 class="titolo_originale">{{film.original_title || film.original_name}}</h2>
                 <img :src="'https://flagcdn.com/16x12/' + film.original_language + '.png'" alt="">
                 <h3 class="voto">{{film.vote_average}}</h3>
               </div>
