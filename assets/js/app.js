@@ -2,8 +2,6 @@
 
 // Milestone 2:
 
-// gestendo il caso in cui non abbiamo la bandiera della nazione ritornata dall’API.
-
 const app = new Vue({
 
     el: '#app',
@@ -59,7 +57,18 @@ const app = new Vue({
             this.error = "Ci dispiace!, il servizio non è raggiungibile al momento";
         });
 
-       }, 
+       },
+
+       // gestendo il caso in cui non abbiamo la bandiera della nazione ritornata dall’API.
+       getFlag(flagCode){
+        flagCode === "en" ? flagCode = "gb" 
+        : flagCode === "ja" ? flagCode = "jp" 
+        : flagCode === "hi" ? flagCode = "in" 
+        : flagCode = flagCode;
+        
+
+        return `https://flagcdn.com/28x21/${flagCode}.png`;
+    }
 
     },
 

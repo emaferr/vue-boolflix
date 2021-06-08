@@ -51,12 +51,12 @@
               Voto 
          -->
               <div v-for="(film, index) in risultato" class="film">
-                <img :src="'https://image.tmdb.org/t/p/w200/' + film.poster_path"  alt="immagine di copertina del titolo corrispondente">
+                <!-- <img :src="'https://image.tmdb.org/t/p/w200/' + film.poster_path"  alt=""> -->
                 <h2 class="titolo">{{film.title || film.name}}</h2>
                 <h2 class="titolo_originale">{{film.original_title || film.original_name}}</h2>
 
               <!-- Trasformiamo la stringa statica della lingua in una vera e propria bandiera della nazione corrispondente -->
-                <img :src="'https://flagcdn.com/16x12/' + film.original_language + '.png'" alt="immagine della bandiara relativa alla nazione a cui appartiene la lingua del titolo">
+                <img :src="getFlag(film.original_language)" :alt="film.original_language">
                 <h3 class="voto">{{film.vote_average}}</h3>
               </div>
 
