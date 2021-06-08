@@ -20,6 +20,8 @@ const app = new Vue({
 
         input :'',
 
+        error : null
+
     },
 
     methods: {
