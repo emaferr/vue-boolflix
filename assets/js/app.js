@@ -14,7 +14,9 @@ const app = new Vue({
 
     data: {
 
-        url : 'https://api.themoviedb.org/3/search/movie?api_key=b9f1f2833add21394f701a0d15da73aa&query=',
+        urlFilms : 'https://api.themoviedb.org/3/search/movie?api_key=b9f1f2833add21394f701a0d15da73aa&query=',
+
+        // urlSerie : 'https://api.themoviedb.org/3/search/movie?api_key=b9f1f2833add21394f701a0d15da73aa&query=',
 
         risultato : [],
 
@@ -30,7 +32,7 @@ const app = new Vue({
 
         axios
 
-        .get(this.url + this.input)
+        .get(this.urlFilms + this.input)
 
         .then(resp => {
 
@@ -47,3 +49,26 @@ const app = new Vue({
     },
 
 })
+
+// methods: {
+    
+//     ricerca(){
+
+//      let ricercaFilm = axios.get(this.urlFilms + this.cerca)
+//      let ricercaSerie = axios.get(this.urlSerie + this.cerca)
+
+//      axios.all([ricercaFilm, ricercaSerie])
+//      .then(axios.spread((...response) => {
+//          let risultatoFilms = response[0].data.results;
+//          let risultatoSerie = response[1].data.results;
+         
+//          this.risultato = [...risultatoFilms, ...risultatoSerie]
+//      }))
+//      .catch(error => {
+//          console.error(error);
+//          this.error = "Ci dispiace!, il servizio non è raggiungibile al momento";
+//      });
+
+//     },
+
+//  },
