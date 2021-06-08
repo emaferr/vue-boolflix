@@ -37,8 +37,9 @@ const app = new Vue({
 
         .then(resp => {
 
-            this.risultato = resp.data.results;
-            
+            const risultatoTemporaneo = resp.data.results;
+            this.risultato =  this.risultato.concat(risultatoTemporaneo);
+
         })
 
         axios
@@ -46,8 +47,8 @@ const app = new Vue({
         .get(this.urlSerie + this.input)
 
         .then(resp => {
-
-            this.risultato = resp.data.results;
+           const risultatoTemporaneo2 = resp.data.results;
+           this.risultato =  this.risultato.concat(risultatoTemporaneo2);
             
         })
 
@@ -56,35 +57,34 @@ const app = new Vue({
             this.error = "Ci dispiace!, il servizio non è raggiungibile al momento";
         });
 
-        console.log(risultato);
-
        }, 
 
        
 
     },
 
+    // methods: {
+    
+    //     ricerca(){
+    
+    //      let ricercaFilm = axios.get(this.urlFilms + this.cerca)
+    //      let ricercaSerie = axios.get(this.urlSerie + this.cerca)
+    
+    //      axios.all([ricercaFilm, ricercaSerie])
+    //      .then(axios.spread((...response) => {
+    //          let risultatoFilms = response[0].data.results;
+    //          let risultatoSerie = response[1].data.results;
+             
+    //          this.risultato = [...risultatoFilms, ...risultatoSerie]
+    //      }))
+    //      .catch(error => {
+    //          console.error(error);
+    //          this.error = "Ci dispiace!, il servizio non è raggiungibile al momento";
+    //      });
+    
+    //     },
+    
+    //  },
+
 })
 
-// methods: {
-    
-//     ricerca(){
-
-//      let ricercaFilm = axios.get(this.urlFilms + this.cerca)
-//      let ricercaSerie = axios.get(this.urlSerie + this.cerca)
-
-//      axios.all([ricercaFilm, ricercaSerie])
-//      .then(axios.spread((...response) => {
-//          let risultatoFilms = response[0].data.results;
-//          let risultatoSerie = response[1].data.results;
-         
-//          this.risultato = [...risultatoFilms, ...risultatoSerie]
-//      }))
-//      .catch(error => {
-//          console.error(error);
-//          this.error = "Ci dispiace!, il servizio non è raggiungibile al momento";
-//      });
-
-//     },
-
-//  },
