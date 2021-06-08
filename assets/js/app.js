@@ -14,39 +14,34 @@ const app = new Vue({
 
     data: {
 
-        url : 'https://api.themoviedb.org/3/search/movie?api_key=b9f1f2833add21394f701a0d15da73aa&query=ritorno al futuro',
+        url : 'https://api.themoviedb.org/3/search/movie?api_key=b9f1f2833add21394f701a0d15da73aa&query=',
 
         risultato : [],
+
+        input :'',
+
     },
 
-
-    // ordino gli Albumm per data
     methods: {
+    
+       ricerca(){
 
-
-      },
-
-    mounted() {
-        
         axios
 
-        .get(this.url)
+        .get(this.url + this.input)
 
         .then(resp => {
 
-            let films = resp.data.results;
-
-            for (let index = 0; index < films.length; index++){
-
-                this.risultato.push(films[index])
-
-            }
-
-            console.log(this.risultato);
+            this.risultato = resp.data.results;
             
-           
         })
-        
+        .catch(error => {
+            console.error(error);
+            this.error = "Ci dispiace!, il servizio non è raggiungibile al momento";
+        });
+
+       },
+
     },
 
 })

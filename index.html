@@ -33,19 +33,26 @@
           <header>
 
             <div class="">
-              <input type="text" name="search" placeholder="Cerca">
+              <input v-model="input" type="text" placeholder="Cerca">
+              <button @click="ricerca">cerca</button>
             </div>
 
           </header>
 
           <main>
-            <div v-for="(film, index) in risultato" class="film">
-              <img :src="'https://image.tmdb.org/t/p/w200/' + film.poster_path"  alt="">
-              <h2 class="titolo">{{film.title}}</h2>
-              <h2 class="titolo_originale">{{film.original_title}}</h2>
-              <h3 class="lingua">{{film.original_language}}</h3>
-              <h3 class="voto">{{film.vote_average}}</h3>
+
+            <div class="container">
+
+              <div v-for="(film, index) in risultato" class="film">
+                <img :src="'https://image.tmdb.org/t/p/w200/' + film.poster_path"  alt="">
+                <h2 class="titolo">{{film.title}}</h2>
+                <h2 class="titolo_originale">{{film.original_title}}</h2>
+                <h3 class="lingua">{{film.original_language}}</h3>
+                <h3 class="voto">{{film.vote_average}}</h3>
+              </div>
+
             </div>
+            
           </main>
 
           <footer></footer>
