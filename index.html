@@ -43,6 +43,8 @@
 
             <div class="container">
 
+              <!-- Durante la ricerca se sono presenti serie con quel nome mostra solo loro , in alternativa i film -->
+
               <div v-for="(film, index) in risultato" class="film">
                 <img :src="'https://image.tmdb.org/t/p/w200/' + film.poster_path"  alt="">
                 <h2 class="titolo">{{film.title || film.name}}</h2>
