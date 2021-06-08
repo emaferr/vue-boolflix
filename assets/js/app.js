@@ -31,6 +31,8 @@ const app = new Vue({
     
        ricerca(){
 
+        this.risultato = [],
+
         axios
 
         .get(this.urlFilms + this.input)
@@ -40,13 +42,14 @@ const app = new Vue({
             const risultatoTemporaneo = resp.data.results;
             this.risultato =  this.risultato.concat(risultatoTemporaneo);
 
-        })
+        }),
 
         axios
 
         .get(this.urlSerie + this.input)
 
         .then(resp => {
+
            const risultatoTemporaneo2 = resp.data.results;
            this.risultato =  this.risultato.concat(risultatoTemporaneo2);
             
@@ -59,32 +62,7 @@ const app = new Vue({
 
        }, 
 
-       
-
     },
-
-    // methods: {
-    
-    //     ricerca(){
-    
-    //      let ricercaFilm = axios.get(this.urlFilms + this.cerca)
-    //      let ricercaSerie = axios.get(this.urlSerie + this.cerca)
-    
-    //      axios.all([ricercaFilm, ricercaSerie])
-    //      .then(axios.spread((...response) => {
-    //          let risultatoFilms = response[0].data.results;
-    //          let risultatoSerie = response[1].data.results;
-             
-    //          this.risultato = [...risultatoFilms, ...risultatoSerie]
-    //      }))
-    //      .catch(error => {
-    //          console.error(error);
-    //          this.error = "Ci dispiace!, il servizio non è raggiungibile al momento";
-    //      });
-    
-    //     },
-    
-    //  },
 
 })
 
