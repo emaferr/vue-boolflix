@@ -2,9 +2,25 @@ body{
     background-color: #1B1B1B;
 }
 
+.back ul{
+    list-style: none;
+    padding: 0;
+}
+
 .container {
     position: relative;
   }
+
+  input:focus { 
+    outline: none !important;
+    box-shadow: 0 0 5px #B7312B;
+}
+
+.cerca i{
+    position: absolute;
+    right: 22px;
+    top: 36%;
+}
 
 .front, .back {
 -webkit-backface-visibility: hidden;
@@ -33,14 +49,16 @@ color: white;
 }
   
 .card {
-position: relative;
-width: 280px;
-height: 420px;
-background-color: #1B1B1B;
-overflow: hidden;
-transition: 0.5s;
-transform-style: preserve-3d;
+    position: relative;
+    margin: .2rem;
+    width: 274px;
+    height: 420px;
+    background-color: #1B1B1B;
+    overflow: hidden;
+    transition: 0.5s;
+    transform-style: preserve-3d;
 }
+
 
 .card:hover {
 transform: rotateY(180deg);

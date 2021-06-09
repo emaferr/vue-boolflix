@@ -26,18 +26,21 @@
 
       </head>
 
-      <body>
+      <body class="px-3 py-1">
 
         <!-- Creare un layout base con una searchbar (una input e un button) in cui possiamo scrivere completamente o parzialmente il nome di un film. Possiamo, cliccando il  bottone, cercare sull’API tutti i film che contengono ciò che ha scritto l’utente. -->
         <div id="app">
 
           <header>
 
-            <nav class="navbar navbar-light bg-light">
+            <nav class="navbar navbar-light">
               <div class="container-fluid">
-                <a class="navbar-brand">Boolflix</a>
-                <div class="d-flex">
-                  <input @keyup.enter="ricerca" v-model="input" type="cerca" placeholder="Cerca" aria-label="">
+                <a class="navbar-brand">
+                  <img src="./assets/img/128px-Netflix_2015_logo.svg.png" alt="">
+                </a>
+                <div class="cerca d-flex">
+                  <i style="color: #B7312B;" class="fas fa-search"></i>
+                  <input class="rounded-pill px-2" @keyup.enter="ricerca" v-model="input" type="cerca" placeholder="Cerca" aria-label="">
                 </div>
               </div>
             </nav>
@@ -46,28 +49,38 @@
 
           <main>
 
-            <div class="contain d-flex justify-content-center flex-wrap my-4">
+            <div class="contain justify-content-center d-flex flex-wrap my-4">
 
-              <div v-for="(movie, index) in risultato" class="card m-1">
+              <div v-for="(movie, index) in risultato" class="card">
 
                 <div class="front">
                   <img style="height: 420px; padding: 0; border: none;" :src="'https://image.tmdb.org/t/p/w342' + movie.poster_path" class="img-thumbnail" alt="...">
                 </div>
                 
-                <div class="back">
-                  <h5 class=""> Titolo: {{movie.title || movie.name}}</h5>
-                  <p class="">{{movie.original_title || movie.original_name}}</p>
-
-                  <!-- Trasformiamo la stringa statica della lingua in una vera e propria bandiera della nazione corrispondente -->
-                  <img width="50px" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" :alt="movie.original_language" :alt="movie.original_language">
-                  <a href="#">{{movie.vote_average}}</a>
-
-                  <div>
-                    Vote:
-                    <i class="fas fa-star" v-for="number in giudizio(movie.vote_average)"></i>
-                    <i class="far fa-star" v-for="number in 5 - giudizio(movie.vote_average)"></i>
-                  </div>
-                  
+                <div class="back overflow-auto px-3 py-5">              
+                  <ul>
+                    <li class="mb-2">
+                      <h5 class="d-inline">Titolo: </h5>
+                      <span>{{movie.title || movie.name}}</span>
+                    </li>
+                    <li class="mb-2">  
+                      <h5 class="d-inline">Titolo originale: </h5>
+                      <span>{{movie.original_title || movie.original_name}}</span>
+                    </li>
+                    <li class="mb-2">
+                      <h5 class="d-inline">Lingua: </h5>
+                      <img style="height: 20px; vertical-align: sub;" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" >
+                    </li>
+                    <li class="mb-2">
+                      <h5 class="d-inline">Voto: </h5>
+                      <i class="fas fa-star" v-for="number in giudizio(movie.vote_average)"></i>
+                      <i class="far fa-star" v-for="number in 5 - giudizio(movie.vote_average)"></i>
+                    </li>
+                    <li>  
+                      <h5 class="d-inline">Descrizione: </h5>
+                      <span class="over">{{movie.overview}}</span>
+                    </li>
+                  </ul>
                 </div>
 
               </div>
