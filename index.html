@@ -44,15 +44,22 @@
 
             <div class="container d-flex justify-content-center flex-wrap">
 
-              <div v-for="(film, index) in risultato" class="card" style="width: 18rem;">
-                <img height="350" :src="'https://image.tmdb.org/t/p/w200' + film.poster_path" class="card-img-top" @error="" alt="...">
+              <div v-for="(movie, index) in risultato" class="card" style="width: 18rem;">
+                <img :src="'https://image.tmdb.org/t/p/w342' + movie.poster_path" class="card-img-top" @error="" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title">{{film.title || film.name}}</h5>
-                  <p class="card-text">{{film.original_title || film.original_name}}</p>
+                  <h5 class="card-title">{{movie.title || movie.name}}</h5>
+                  <p class="card-text">{{movie.original_title || movie.original_name}}</p>
 
                   <!-- Trasformiamo la stringa statica della lingua in una vera e propria bandiera della nazione corrispondente -->
-                  <img :src="getFlag(film.original_language)" :alt="film.original_language">
-                  <a href="#">{{film.vote_average}}</a>
+                  <img width="50px" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" :alt="movie.original_language" :alt="movie.original_language">
+                  <a href="#">{{movie.vote_average}}</a>
+
+                  <div>
+                    Vote:
+                    <i class="fas fa-star" v-for="number in giudizio(movie.vote_average)"></i>
+                    <i class="far fa-star" v-for="number in 5 - giudizio(movie.vote_average)"></i>
+                  </div>
+                  
                 </div>
               </div>
 
