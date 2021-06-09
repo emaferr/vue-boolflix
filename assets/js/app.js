@@ -48,6 +48,14 @@ const app = new Vue({
             return Math.ceil(obj / 2);
           },
 
+          poster: function (obj) {
+            if (obj.poster_path) {
+              return `https://image.tmdb.org/t/p/w342${obj.poster_path}`;
+            } else {
+              return 'assets/img/not-img.jpeg'
+            }
+          },
+
     },
 
 })

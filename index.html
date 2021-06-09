@@ -54,7 +54,7 @@
               <div v-for="(movie, index) in risultato" class="card">
 
                 <div class="front">
-                  <img style="height: 420px; padding: 0; border: none;" :src="'https://image.tmdb.org/t/p/w342' + movie.poster_path" class="img-thumbnail" alt="...">
+                  <img style="height: 420px; padding: 0; border: none;" :src="poster(movie)" class="img-thumbnail" alt="...">
                 </div>
                 
                 <div class="back overflow-auto px-3 py-5">              
@@ -73,7 +73,7 @@
                     </li>
                     <li class="mb-2">
                       <h5 class="d-inline">Voto: </h5>
-                      <i class="fas fa-star" v-for="number in giudizio(movie.vote_average)"></i>
+                      <i style="color: yellow;" class="fas fa-star" v-for="number in giudizio(movie.vote_average)"></i>
                       <i class="far fa-star" v-for="number in 5 - giudizio(movie.vote_average)"></i>
                     </li>
                     <li>  
