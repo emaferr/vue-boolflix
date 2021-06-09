@@ -42,29 +42,16 @@
 
           <main>
 
-            <div class="container">
+            <div class="container d-flex justify-content-center flex-wrap">
 
-         <!-- Vogliamo dopo la risposta dell’API visualizzare a schermo i seguenti valori per ogni film trovato: 
-              Titolo
-              Titolo Originale
-              Lingua
-              Voto 
-         -->
-              <!-- <div v-for="(film, index) in risultato" class="film">
-                <img :src="'https://image.tmdb.org/t/p/w200/' + film.poster_path" @error = "ciao"  alt="">
-                <h2 class="titolo">{{film.title || film.name}}</h2>
-                <h2 class="titolo_originale">{{film.original_title || film.original_name}}</h2> -->
-
-              <!-- Trasformiamo la stringa statica della lingua in una vera e propria bandiera della nazione corrispondente -->
-                <!-- <img :src="getFlag(film.original_language)" alt="">
-                <h3 class="voto">{{film.vote_average}}</h3>
-              </div> -->
               <div v-for="(film, index) in risultato" class="card" style="width: 18rem;">
-                <img :src="'https://image.tmdb.org/t/p/w200/' + film.poster_path" class="card-img-top" @error="" alt="...">
+                <img height="350" :src="'https://image.tmdb.org/t/p/w200' + film.poster_path" class="card-img-top" @error="" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">{{film.title || film.name}}</h5>
                   <p class="card-text">{{film.original_title || film.original_name}}</p>
-                  <img :src="getFlag(film.original_language)" alt="">
+
+                  <!-- Trasformiamo la stringa statica della lingua in una vera e propria bandiera della nazione corrispondente -->
+                  <img :src="getFlag(film.original_language)" :alt="film.original_language">
                   <a href="#">{{film.vote_average}}</a>
                 </div>
               </div>

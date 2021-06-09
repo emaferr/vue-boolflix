@@ -8,9 +8,11 @@ const app = new Vue({
 
     data: {
 
-        urlFilms : 'https://api.themoviedb.org/3/search/movie?api_key=b9f1f2833add21394f701a0d15da73aa&query=',
+        apiKey : 'b9f1f2833add21394f701a0d15da73aa',
 
-        urlSerie : 'https://api.themoviedb.org/3/search/tv?api_key=b9f1f2833add21394f701a0d15da73aa&query=',
+        urlFilms : 'https://api.themoviedb.org/3/search/movie?api_key=',
+
+        urlSerie : 'https://api.themoviedb.org/3/search/tv?api_key=',
 
         risultato : [],
 
@@ -24,33 +26,19 @@ const app = new Vue({
     
        ricerca(){
 
-        this.risultato = [],
+            const chiamataFilm = axios.get(this.urlFilms + this.apiKey + '&query=' + this.input);
+            const chiamataSerie = axios.get(this.urlSerie + this.apiKey + '&query=' + this.input);
 
-        // Chiamata film
-        axios
+            axios.all([chiamataFilm, chiamataSerie])
+            .then(axios.spread((...resp) => {
+                const risultatoFilm = resp[0].data.results;
+                const risultatoSerie = resp[1].data.results;
 
-        .get(this.urlFilms + this.input)
+                this.risultato = [...risultatoFilm, ...risultatoSerie];
 
-        .then(resp => {
+                this.input = ''
 
-            const risultatoTemporaneo = resp.data.results;
-            this.risultato =  this.risultato.concat(risultatoTemporaneo);
-
-        }),
-
-
-        // Allarghiamo poi la ricerca anche alle serie tv. Con la stessa azione di ricerca dovremo prendere sia i film che corrispondono alla query, sia le serie tv, 
-        // stando attenti ad avere alla fine dei valori simili
-        axios
-
-        .get(this.urlSerie + this.input)
-
-        .then(resp => {
-
-           const risultatoTemporaneo2 = resp.data.results;
-           this.risultato =  this.risultato.concat(risultatoTemporaneo2);
-            
-        })
+            }))
 
         .catch(error => {
             console.error(error);
