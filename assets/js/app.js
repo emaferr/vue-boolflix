@@ -23,7 +23,7 @@ const app = new Vue({
 
     methods: {
     
-       ricerca(){
+        ricerca(){
 
             this.risultato = [];
 
@@ -35,26 +35,25 @@ const app = new Vue({
                 for(let i = 0; i < resp.length; i++) {   
                     this.risultato = this.risultato.concat(resp[i].data.results);
                 }
-                this.input = ''
             })
             .catch(error => {
                 console.error(error);
                 this.error = "Ci dispiace!, il servizio non è raggiungibile al momento";
             });
 
-       },
+        },
 
         giudizio: function(obj) {
             return Math.ceil(obj / 2);
-          },
+        },
 
-          poster: function (obj) {
+        poster: function (obj) {
             if (obj.poster_path) {
-              return `https://image.tmdb.org/t/p/w342${obj.poster_path}`;
+                return `https://image.tmdb.org/t/p/w342${obj.poster_path}`;
             } else {
-              return 'assets/img/not-img.jpeg'
+                return 'assets/img/not-img.jpeg'
             }
-          },
+        },
 
     },
 

@@ -40,7 +40,7 @@
                 </a>
                 <div class="cerca d-flex">
                   <i style="color: #B7312B;" class="fas fa-search"></i>
-                  <input class="rounded-pill px-2" @keyup.enter="ricerca" v-model="input" type="cerca" placeholder="Cerca" aria-label="">
+                  <input class="rounded-pill px-2" @keyup="ricerca" v-model="input" type="cerca" placeholder="Cerca" aria-label="">
                 </div>
               </div>
             </nav>
@@ -78,7 +78,7 @@
                     </li>
                     <li>  
                       <h5 class="d-inline">Descrizione: </h5>
-                      <span class="over">{{movie.overview}}</span>
+                      <span class="over">{{ movie.overview ? movie.overview : "Descrizione non disponibile" }}</span>
                     </li>
                   </ul>
                 </div>
