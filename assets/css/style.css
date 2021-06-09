@@ -1,0 +1,138 @@
+body{
+    background-color: #1B1B1B;
+}
+
+.container {
+    position: relative;
+  }
+
+.front, .back {
+-webkit-backface-visibility: hidden;
+backface-visibility: hidden;
+position: absolute;
+height: 100%;
+width: 100%;
+top: 0;
+left: 0;
+box-sizing: border-box;
+transition-delay: 0.15s;
+transition: 0;
+}
+  
+.front {
+transform: rotateY(0deg);
+}
+
+.back {
+transform: rotateY(180deg);
+opacity: 0;
+-webkit-backface-visibility: visible;
+backface-visibility: visible;
+background: #333741;
+color: white;
+}
+  
+.card {
+position: relative;
+width: 280px;
+height: 420px;
+background-color: #1B1B1B;
+overflow: hidden;
+transition: 0.5s;
+transform-style: preserve-3d;
+}
+
+.card:hover {
+transform: rotateY(180deg);
+}
+.card:hover .front {
+opacity: 0;
+}
+.card:hover .back {
+opacity: 1;
+}
+
+  
+.image {
+position: absolute;
+bottom: 0;
+left: 0;
+-webkit-animation: slide-in-right 1.25s;
+        animation: slide-in-right 1.25s;
+-webkit-animation: slide-in-right 1.25s cubic-bezier(0.625, 0.075, 0.11, 1.165);
+        animation: slide-in-right 1.25s cubic-bezier(0.625, 0.075, 0.11, 1.165);
+-webkit-animation-timing-function: cubic-bezier(0.625, 0.075, 0.11, 1.165);
+        animation-timing-function: cubic-bezier(0.625, 0.075, 0.11, 1.165);
+}
+  
+@-webkit-keyframes slide-in {
+0% {
+    transform: translate3d(-300px, 0, 0);
+}
+100% {
+    transform: translate3d(0, 0, 0);
+}
+}
+
+@keyframes slide-in {
+0% {
+    transform: translate3d(-300px, 0, 0);
+}
+100% {
+    transform: translate3d(0, 0, 0);
+}
+}
+@-webkit-keyframes slide-in-slow {
+0% {
+    transform: translate3d(-300px, 0, 0);
+}
+20% {
+    transform: translate3d(-300px, 0, 0);
+}
+100% {
+    transform: translate3d(0, 0, 0);
+}
+}
+@keyframes slide-in-slow {
+0% {
+    transform: translate3d(-300px, 0, 0);
+}
+20% {
+    transform: translate3d(-300px, 0, 0);
+}
+100% {
+    transform: translate3d(0, 0, 0);
+}
+}
+@-webkit-keyframes slide-in-right {
+0% {
+    transform: translate3d(400px, 0, 0);
+}
+30% {
+    transform: translate3d(400px, 0, 0);
+    opacity: 0;
+}
+40% {
+    opacity: 0;
+}
+100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+}
+}
+@keyframes slide-in-right {
+0% {
+    transform: translate3d(400px, 0, 0);
+}
+30% {
+    transform: translate3d(400px, 0, 0);
+    opacity: 0;
+}
+40% {
+    opacity: 0;
+}
+100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+}
+}

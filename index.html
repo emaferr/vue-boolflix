@@ -33,22 +33,30 @@
 
           <header>
 
-            <div class="">
-              <input v-model="input" type="text" placeholder="Cerca">
-              <button @click="ricerca">cerca</button>
-            </div>
-
+            <nav class="navbar navbar-light bg-light">
+              <div class="container-fluid">
+                <a class="navbar-brand">Boolflix</a>
+                <div class="d-flex">
+                  <input @keyup.enter="ricerca" v-model="input" type="cerca" placeholder="Cerca" aria-label="">
+                </div>
+              </div>
+            </nav>
+      
           </header>
 
           <main>
 
-            <div class="container d-flex justify-content-center flex-wrap">
+            <div class="contain d-flex justify-content-center flex-wrap my-4">
 
-              <div v-for="(movie, index) in risultato" class="card" style="width: 18rem;">
-                <img :src="'https://image.tmdb.org/t/p/w342' + movie.poster_path" class="card-img-top" @error="" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">{{movie.title || movie.name}}</h5>
-                  <p class="card-text">{{movie.original_title || movie.original_name}}</p>
+              <div v-for="(movie, index) in risultato" class="card m-1">
+
+                <div class="front">
+                  <img style="height: 420px; padding: 0; border: none;" :src="'https://image.tmdb.org/t/p/w342' + movie.poster_path" class="img-thumbnail" alt="...">
+                </div>
+                
+                <div class="back">
+                  <h5 class=""> Titolo: {{movie.title || movie.name}}</h5>
+                  <p class="">{{movie.original_title || movie.original_name}}</p>
 
                   <!-- Trasformiamo la stringa statica della lingua in una vera e propria bandiera della nazione corrispondente -->
                   <img width="50px" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" :alt="movie.original_language" :alt="movie.original_language">
@@ -61,6 +69,7 @@
                   </div>
                   
                 </div>
+
               </div>
 
             </div>
