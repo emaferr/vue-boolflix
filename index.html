@@ -84,6 +84,11 @@
                         <h5 class="d-inline">Descrizione: </h5>
                         <span class="over">{{ movie.overview ? movie.overview : "Descrizione non disponibile" }}</span>
                       </li>
+                      <li>
+                        <h5>Cast :</h5>
+                        <span v-for="(attore, index) in castFilm">{{attore.name}}</span>
+                      </li>
+
                     </ul>
                     
                   </div>
