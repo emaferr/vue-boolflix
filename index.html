@@ -40,7 +40,7 @@
                 </a>
                 <div class="cerca d-flex">
                   <i style="color: #B7312B;" class="fas fa-search"></i>
-                  <input class="rounded-pill px-2" @keyup="ricerca" v-model="input" type="cerca" placeholder="Cerca" aria-label="">
+                  <input class="rounded-pill px-2" @keyup.enter="ricerca" v-model="input" type="cerca" placeholder="Cerca" aria-label="">
                 </div>
               </div>
             </nav>
@@ -79,10 +79,10 @@
                         <h5 class="d-inline">Cast: </h5>          
                         <span v-for="cast in movie.cast">{{cast.name}}, </span>
                       </li>
-                      <!-- <li class="mb-2">
+                      <li class="mb-2">
                         <h5 class="d-inline">Genere: </h5>          
-                        <span v-for="genere in movie.genere">{{genere.name}}</span>
-                      </li> -->
+                        <span v-for="genere in movie.genre">{{genere.name}},  </span>
+                      </li>
                       <li class="mb-2">
                         <h5 class="d-inline">Voto: </h5>
                         <i style="color: yellow;" class="fas fa-star" v-for="number in giudizio(movie.vote_average)"></i>
@@ -128,7 +128,10 @@
                         <h5 class="d-inline">Cast: </h5>          
                         <span v-for="cast in movie.cast">{{cast.name}}</span>
                       </li>
-                      
+                      <li class="mb-2">
+                        <h5 class="d-inline">Genere: </h5>          
+                        <span v-for="genere in movie.genre">{{genere.name}},  </span>
+                      </li>
                       <li class="mb-2">
                         <h5 class="d-inline">Voto: </h5>
                         <i style="color: yellow;" class="fas fa-star" v-for="number in giudizio(movie.vote_average)"></i>

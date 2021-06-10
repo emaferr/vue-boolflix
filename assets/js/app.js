@@ -47,31 +47,51 @@ const app = new Vue({
                 this.risultatoFilm = resp[0].data.results;
 
                 for (let index = 0; index < this.risultatoFilm.length; index++) {
+
                     const elemento = this.risultatoFilm[index];
 
                     this.filmId = elemento.id
 
                     axios.get(this.urlCast + this.filmId + "/credits?api_key=" + this.apiKey)
-                            .then(cast => {
+                    .then(cast => {
 
-                                this.$set(elemento, "cast", cast.data.cast.slice(0, 5));
+                        this.$set(elemento, "cast", cast.data.cast.slice(0, 5));
 
-                            })
+                    })
+             
+                    axios.get(this.urlCast + this.filmId + "?api_key=" + this.apiKey)
+
+                    .then(genere => {
+
+                        this.$set(elemento, "genre", genere.data.genres);
+
+                    })
+                        
                 }
 
                 this.risultatoSerie = resp[1].data.results;
 
                 for (let i = 0; i < this.risultatoSerie.length; i++) {
+
                     const elemento2 = this.risultatoSerie[i];
 
                     this.serieId = elemento2.id
 
                     axios.get(this.urlCast + this.serieId + "/credits?api_key=" + this.apiKey)
-                            .then(cast => {
+                    .then(cast => {
 
-                                this.$set(elemento2, "cast", cast.data.cast.slice(0, 5));
+                        this.$set(elemento2, "cast", cast.data.cast.slice(0, 5));
 
-                            })
+                    })
+
+                    axios.get(this.urlCast + this.serieId + "?api_key=" + this.apiKey)
+
+                    .then(genere => {
+
+                        this.$set(elemento2, "genre", genere.data.genres);
+                        
+                    })
+
                 }
 
             })
