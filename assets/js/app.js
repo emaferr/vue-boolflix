@@ -21,6 +21,8 @@ const app = new Vue({
 
         filmId : [],
 
+        castFilm : [],
+
         input :'', 
 
         error : null
@@ -43,13 +45,21 @@ const app = new Vue({
                 this.risultatoSerie = resp[1].data.results
 
                 this.risultatoFilm.forEach(film => {
+
                     this.filmId = film.id
 
-                    console.log(this.filmId);
+                    axios
+                    .get(`https://api.themoviedb.org/3/movie/${this.filmId}/credits?api_key=${this.apiKey}&language=en-US`)
+                    .then(resp => {
+
+                       this.castFilm = resp.data.cast;
+
+                       console.log(this.castFilm);
+                    })
+                    
                 });
 
-             
-             
+
             })
            
             .catch(error => {
