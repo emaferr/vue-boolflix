@@ -5,6 +5,8 @@ const app = new Vue({
 
     el: '#app',
 
+    // https://api.themoviedb.org/3/movie/ID/credits?api_key=b9f1f2833add21394f701a0d15da73aa&language=en-US
+
     data: {
 
         apiKey : 'b9f1f2833add21394f701a0d15da73aa',
@@ -16,6 +18,8 @@ const app = new Vue({
         risultatoFilm : [],
 
         risultatoSerie : [],
+
+        filmId : [],
 
         input :'', 
 
@@ -35,13 +39,25 @@ const app = new Vue({
             axios.all([chiamataFilm, chiamataSerie])
             .then(resp => {
                 this.risultatoFilm = resp[0].data.results;
-                this.risultatoSerie = resp[1].data.results;
+                
+                this.risultatoSerie = resp[1].data.results
+
+                this.risultatoFilm.forEach(film => {
+                    this.filmId = film.id
+
+                    console.log(this.filmId);
+                });
+
+             
+             
             })
            
             .catch(error => {
                 console.error(error);
                 this.error = "Ci dispiace!, il servizio non è raggiungibile al momento";
-            });
+            })
+
+            
 
         },
 
@@ -56,6 +72,8 @@ const app = new Vue({
                 return 'assets/img/not-img.jpeg'
             }
         },
+
+       
 
     },
 
