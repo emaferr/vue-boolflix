@@ -1,5 +1,6 @@
 body{
     background-color: #1B1B1B;
+    font-family: 'Roboto', sans-serif;
 }
 
 .contain{
@@ -64,6 +65,11 @@ color: white;
 
 h5{
     font-size: .9rem;
+}
+
+h3{
+    color: #B7312B;
+    font-weight: bold;
 }
 
 .card:hover {

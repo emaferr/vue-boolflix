@@ -5,8 +5,6 @@ const app = new Vue({
 
     el: '#app',
 
-    // https://api.themoviedb.org/3/movie/ID/credits?api_key=b9f1f2833add21394f701a0d15da73aa&language=en-US
-
     data: {
 
         apiKey : 'b9f1f2833add21394f701a0d15da73aa',
@@ -34,8 +32,6 @@ const app = new Vue({
     methods: {
     
         ricerca(){
-
-            
 
             const chiamataFilm = axios.get(this.urlFilms + this.apiKey + '&query=' + this.input);
             const chiamataSerie = axios.get(this.urlSerie + this.apiKey + '&query=' + this.input);
@@ -73,14 +69,14 @@ const app = new Vue({
 
                 for (let i = 0; i < this.risultatoSerie.length; i++) {
 
-                    const elemento2 = this.risultatoSerie[i];
+                    const elemento = this.risultatoSerie[i];
 
-                    this.serieId = elemento2.id
+                    this.serieId = elemento.id
 
                     axios.get(this.urlCast + this.serieId + "/credits?api_key=" + this.apiKey)
                     .then(cast => {
 
-                        this.$set(elemento2, "cast", cast.data.cast.slice(0, 5));
+                        this.$set(elemento, "cast", cast.data.cast.slice(0, 5));
 
                     })
 
@@ -88,7 +84,7 @@ const app = new Vue({
 
                     .then(genere => {
 
-                        this.$set(elemento2, "genre", genere.data.genres);
+                        this.$set(elemento, "genre", genere.data.genres);
                         
                     })
 
@@ -114,9 +110,74 @@ const app = new Vue({
                 return 'assets/img/not-img.jpeg'
             }
         },
-
        
+    },
 
+    // Faccio in modo che in prima pagina appaiano i film e le serie piu popolari
+    mounted() {
+
+        axios.get('https://api.themoviedb.org/3/movie/popular?api_key=b9f1f2833add21394f701a0d15da73aa&language=en-US&page=1')
+
+        .then(resp =>{
+
+            this.risultatoFilm = resp.data.results;
+
+            for (let index = 0; index < this.risultatoFilm.length; index++) {
+
+                const elemento = this.risultatoFilm[index];
+
+                this.filmId = elemento.id
+
+                axios.get(this.urlCast + this.filmId + "/credits?api_key=" + this.apiKey)
+                .then(cast => {
+
+                    this.$set(elemento, "cast", cast.data.cast.slice(0, 5));
+
+                })
+         
+                axios.get(this.urlCast + this.filmId + "?api_key=" + this.apiKey)
+
+                .then(genere => {
+
+                    this.$set(elemento, "genre", genere.data.genres);
+
+                })
+                    
+            }
+
+            })
+
+        axios.get('https://api.themoviedb.org/3/tv/popular?api_key=b9f1f2833add21394f701a0d15da73aa&language=en-US&page=1')
+
+        .then(resp =>{
+
+            this.risultatoSerie = resp.data.results;
+
+            for (let i = 0; i < this.risultatoSerie.length; i++) {
+
+                const elemento = this.risultatoSerie[i];
+
+                this.serieId = elemento.id
+
+                axios.get(this.urlCast + this.serieId + "/credits?api_key=" + this.apiKey)
+                .then(cast => {
+
+                    this.$set(elemento, "cast", cast.data.cast.slice(0, 5));
+
+                })
+         
+                axios.get(this.urlCast + this.serieId + "?api_key=" + this.apiKey)
+
+                .then(genere => {
+
+                    this.$set(elemento, "genre", genere.data.genres);
+
+                })
+                    
+            }
+
+            })
+        
     },
 
 })

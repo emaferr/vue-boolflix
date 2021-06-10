@@ -20,6 +20,8 @@
         <link rel="icon" href="" type="image/png" />
 
         <!-- Google fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
         <!-- Fontawesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
@@ -35,14 +37,15 @@
 
             <nav class="navbar navbar-light">
               <div class="container-fluid">
-                <a class="navbar-brand">
-                  <img src="./assets/img/128px-Netflix_2015_logo.svg.png" alt="">
+                <a class="navbar-brand" href="http://127.0.0.1:5500/index.html">
+                  <img style="width: 150px;" src="./assets/img/128px-Netflix_2015_logo.svg.png" alt="">
                 </a>
                 <div class="cerca d-flex">
                   <i style="color: #B7312B;" class="fas fa-search"></i>
-                  <input class="rounded-pill px-2" @keyup.enter="ricerca" v-model="input" type="cerca" placeholder="Cerca" aria-label="">
+                  <input class="rounded-pill px-2" @keyup="ricerca" v-model="input" type="cerca" placeholder="Cerca" aria-label="">
                 </div>
               </div>
+              <a href="https://api.themoviedb.org/3/movie/35/videos?api_key=b9f1f2833add21394f701a0d15da73aa&language=en-U">video</a>
             </nav>
       
           </header>
@@ -51,7 +54,7 @@
 
             <div class="contain justify-content-center my-4">
 
-              <h1>Film</h1>
+              <h3>Film</h3>
 
               <div style="flex-wrap: nowrap;" class="row overflow-auto">
 
@@ -65,11 +68,11 @@
                     <ul>
                       <li class="mb-2">
                         <h5 class="d-inline">Titolo: </h5>
-                        <span>{{movie.title}}</span>
+                        <span>{{movie.title || movie.name}}</span>
                       </li>
                       <li class="mb-2">  
                         <h5 class="d-inline">Titolo originale: </h5>
-                        <span>{{movie.original_title}}</span>
+                        <span>{{movie.original_title || movie.original_name}}</span>
                       </li>
                       <li class="mb-2">
                         <h5 class="d-inline">Lingua: </h5>
@@ -100,7 +103,7 @@
 
               </div>
 
-              <h1 class="mt-4">SERIETV</h1>
+              <h3 class="mt-4">SerieTV</h3>
 
               <div style="flex-wrap: nowrap;" class="row overflow-auto">
 
@@ -126,7 +129,7 @@
                       </li>
                       <li class="mb-2">
                         <h5 class="d-inline">Cast: </h5>          
-                        <span v-for="cast in movie.cast">{{cast.name}}</span>
+                        <span v-for="cast in movie.cast">{{cast.name}}, </span>
                       </li>
                       <li class="mb-2">
                         <h5 class="d-inline">Genere: </h5>          
