@@ -49,41 +49,91 @@
 
           <main>
 
-            <div class="contain justify-content-center d-flex flex-wrap my-4">
+            <div class="contain justify-content-center my-4">
 
-              <div v-for="(movie, index) in risultato" class="card">
+              <h1>Film</h1>
 
-                <div class="front">
-                  <img style="height: 420px; padding: 0; border: none;" :src="poster(movie)" class="img-thumbnail" alt="...">
-                </div>
-                
-                <div class="back overflow-auto px-3 py-5">              
-                  <ul>
-                    <li class="mb-2">
-                      <h5 class="d-inline">Titolo: </h5>
-                      <span>{{movie.title || movie.name}}</span>
-                    </li>
-                    <li class="mb-2">  
-                      <h5 class="d-inline">Titolo originale: </h5>
-                      <span>{{movie.original_title || movie.original_name}}</span>
-                    </li>
-                    <li class="mb-2">
-                      <h5 class="d-inline">Lingua: </h5>
-                      <img style="height: 20px; vertical-align: sub;" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" >
-                    </li>
-                    <li class="mb-2">
-                      <h5 class="d-inline">Voto: </h5>
-                      <i style="color: yellow;" class="fas fa-star" v-for="number in giudizio(movie.vote_average)"></i>
-                      <i class="far fa-star" v-for="number in 5 - giudizio(movie.vote_average)"></i>
-                    </li>
-                    <li>  
-                      <h5 class="d-inline">Descrizione: </h5>
-                      <span class="over">{{ movie.overview ? movie.overview : "Descrizione non disponibile" }}</span>
-                    </li>
-                  </ul>
+              <div style="flex-wrap: nowrap;" class="row overflow-auto">
+
+                <div v-for="(movie, index) in risultatoFilm" class="card">
+
+                  <div class="front">
+                    <img style="height: 420px; padding: 0; border: none;" :src="poster(movie)" class="img-thumbnail" alt="...">
+                  </div>
+                  
+                  <div class="back overflow-auto px-3 py-5">              
+                    <ul>
+                      <li class="mb-2">
+                        <h5 class="d-inline">Titolo: </h5>
+                        <span>{{movie.title}}</span>
+                      </li>
+                      <li class="mb-2">  
+                        <h5 class="d-inline">Titolo originale: </h5>
+                        <span>{{movie.original_title}}</span>
+                      </li>
+                      <li class="mb-2">
+                        <h5 class="d-inline">Lingua: </h5>
+                        <img style="height: 20px; vertical-align: sub;" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" >
+                      </li>
+                      <li class="mb-2">
+                        <h5 class="d-inline">Voto: </h5>
+                        <i style="color: yellow;" class="fas fa-star" v-for="number in giudizio(movie.vote_average)"></i>
+                        <i class="far fa-star" v-for="number in 5 - giudizio(movie.vote_average)"></i>
+                      </li>
+                      <li class="">  
+                        <h5 class="d-inline">Descrizione: </h5>
+                        <span class="over">{{ movie.overview ? movie.overview : "Descrizione non disponibile" }}</span>
+                      </li>
+                    </ul>
+                    
+                  </div>
+  
                 </div>
 
               </div>
+
+              <h1 class="mt-4">SERIETV</h1>
+
+              <div style="flex-wrap: nowrap;" class="row overflow-auto">
+
+                <div v-for="(movie, index) in risultatoSerie" class="card">
+
+                  <div class="front">
+                    <img style="height: 420px; padding: 0; border: none;" :src="poster(movie)" class="img-thumbnail" alt="...">
+                  </div>
+                  
+                  <div class="back overflow-auto px-3 py-5">              
+                    <ul>
+                      <li class="mb-2">
+                        <h5 class="d-inline">Titolo: </h5>
+                        <span>{{movie.name}}</span>
+                      </li>
+                      <li class="mb-2">  
+                        <h5 class="d-inline">Titolo originale: </h5>
+                        <span>{{movie.original_name}}</span>
+                      </li>
+                      <li class="mb-2">
+                        <h5 class="d-inline">Lingua: </h5>
+                        <img style="height: 20px; vertical-align: sub;" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" >
+                      </li>
+                      <li class="mb-2">
+                        <h5 class="d-inline">Voto: </h5>
+                        <i style="color: yellow;" class="fas fa-star" v-for="number in giudizio(movie.vote_average)"></i>
+                        <i class="far fa-star" v-for="number in 5 - giudizio(movie.vote_average)"></i>
+                      </li>
+                      <li class="">  
+                        <h5 class="d-inline">Descrizione: </h5>
+                        <span class="over">{{ movie.overview ? movie.overview : "Descrizione non disponibile" }}</span>
+                      </li>
+                    </ul>
+                    
+                  </div>
+  
+                </div>
+
+              </div>
+
+              
 
             </div>
             

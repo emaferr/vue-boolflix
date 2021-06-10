@@ -13,7 +13,9 @@ const app = new Vue({
 
         urlSerie : 'https://api.themoviedb.org/3/search/tv?api_key=',
 
-        risultato : [],
+        risultatoFilm : [],
+
+        risultatoSerie : [],
 
         input :'', 
 
@@ -25,17 +27,17 @@ const app = new Vue({
     
         ricerca(){
 
-            this.risultato = [];
+            
 
             const chiamataFilm = axios.get(this.urlFilms + this.apiKey + '&query=' + this.input);
             const chiamataSerie = axios.get(this.urlSerie + this.apiKey + '&query=' + this.input);
 
             axios.all([chiamataFilm, chiamataSerie])
             .then(resp => {
-                for(let i = 0; i < resp.length; i++) {   
-                    this.risultato = this.risultato.concat(resp[i].data.results);
-                }
+                this.risultatoFilm = resp[0].data.results;
+                this.risultatoSerie = resp[1].data.results;
             })
+           
             .catch(error => {
                 console.error(error);
                 this.error = "Ci dispiace!, il servizio non è raggiungibile al momento";

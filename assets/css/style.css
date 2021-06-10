@@ -2,14 +2,15 @@ body{
     background-color: #1B1B1B;
 }
 
+.contain{
+    padding: .75rem;
+}
+
 .back ul{
     list-style: none;
     padding: 0;
 }
 
-.container {
-    position: relative;
-  }
 
   input:focus { 
     outline: none !important;
@@ -57,8 +58,13 @@ color: white;
     overflow: hidden;
     transition: 0.5s;
     transform-style: preserve-3d;
+    cursor: pointer;
+    font-size: .8rem
 }
 
+h5{
+    font-size: .9rem;
+}
 
 .card:hover {
 transform: rotateY(180deg);
