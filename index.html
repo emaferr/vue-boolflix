@@ -76,19 +76,18 @@
                         <img style="height: 20px; vertical-align: sub;" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" >
                       </li>
                       <li class="mb-2">
+                        <h5 class="d-inline">Cast: </h5>          
+                        <span v-for="cast in movie.cast">{{cast.name}}, </span>
+                      </li>
+                      <li class="mb-2">
                         <h5 class="d-inline">Voto: </h5>
                         <i style="color: yellow;" class="fas fa-star" v-for="number in giudizio(movie.vote_average)"></i>
                         <i class="far fa-star" v-for="number in 5 - giudizio(movie.vote_average)"></i>
                       </li>
-                      <li class="">  
+                      <li>  
                         <h5 class="d-inline">Descrizione: </h5>
                         <span class="over">{{ movie.overview ? movie.overview : "Descrizione non disponibile" }}</span>
                       </li>
-                      <li>
-                        <h5>Cast :</h5>
-                        <span v-for="(attore, index) in castFilm">{{attore.name}}</span>
-                      </li>
-
                     </ul>
                     
                   </div>
@@ -120,6 +119,10 @@
                       <li class="mb-2">
                         <h5 class="d-inline">Lingua: </h5>
                         <img style="height: 20px; vertical-align: sub;" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" >
+                      </li>
+                      <li class="mb-2">
+                        <h5 class="d-inline">Cast: </h5>          
+                        <span v-for="cast in movie.cast">{{cast.name}}</span>
                       </li>
                       <li class="mb-2">
                         <h5 class="d-inline">Voto: </h5>

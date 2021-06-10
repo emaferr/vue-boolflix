@@ -15,11 +15,15 @@ const app = new Vue({
 
         urlSerie : 'https://api.themoviedb.org/3/search/tv?api_key=',
 
+        urlCast : "https://api.themoviedb.org/3/movie/",
+
         risultatoFilm : [],
 
-        risultatoSerie : [],
+        serieId : [],
 
         filmId : [],
+
+        risultatoSerie : [],
 
         castFilm : [],
 
@@ -39,35 +43,45 @@ const app = new Vue({
             const chiamataSerie = axios.get(this.urlSerie + this.apiKey + '&query=' + this.input);
 
             axios.all([chiamataFilm, chiamataSerie])
+
             .then(resp => {
-                this.risultatoFilm = resp[0].data.results;
                 
-                this.risultatoSerie = resp[1].data.results
+                this.risultatoFilm = resp[0].data.results;
 
-                this.risultatoFilm.forEach(film => {
+                for (let index = 0; index < this.risultatoFilm.length; index++) {
+                    const elemento = this.risultatoFilm[index];
 
-                    this.filmId = film.id
+                    this.filmId = elemento.id
 
-                    axios
-                    .get(`https://api.themoviedb.org/3/movie/${this.filmId}/credits?api_key=${this.apiKey}&language=en-US`)
-                    .then(resp => {
+                    axios.get(this.urlCast + this.filmId + "/credits?api_key=" + this.apiKey)
+                            .then(cast => {
 
-                       this.castFilm = resp.data.cast;
+                                this.$set(elemento, "cast", cast.data.cast.slice(0, 5));
 
-                       console.log(this.castFilm);
-                    })
-                    
-                });
+                            })
+                }
 
+                this.risultatoSerie = resp[1].data.results;
+
+                for (let i = 0; i < this.risultatoSerie.length; i++) {
+                    const elemento2 = this.risultatoSerie[i];
+
+                    this.serieId = elemento2.id
+
+                    axios.get(this.urlCast + this.filmId + "/credits?api_key=" + this.apiKey)
+                            .then(cast => {
+
+                                this.$set(elemento2, "cast", cast.data.cast.slice(0, 5));
+
+                            })
+                }
 
             })
            
             .catch(error => {
                 console.error(error);
                 this.error = "Ci dispiace!, il servizio non è raggiungibile al momento";
-            })
-
-            
+            })    
 
         },
 
