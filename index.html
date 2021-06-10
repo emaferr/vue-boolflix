@@ -79,6 +79,10 @@
                         <h5 class="d-inline">Cast: </h5>          
                         <span v-for="cast in movie.cast">{{cast.name}}, </span>
                       </li>
+                      <!-- <li class="mb-2">
+                        <h5 class="d-inline">Genere: </h5>          
+                        <span v-for="genere in movie.genere">{{genere.name}}</span>
+                      </li> -->
                       <li class="mb-2">
                         <h5 class="d-inline">Voto: </h5>
                         <i style="color: yellow;" class="fas fa-star" v-for="number in giudizio(movie.vote_average)"></i>
@@ -124,6 +128,7 @@
                         <h5 class="d-inline">Cast: </h5>          
                         <span v-for="cast in movie.cast">{{cast.name}}</span>
                       </li>
+                      
                       <li class="mb-2">
                         <h5 class="d-inline">Voto: </h5>
                         <i style="color: yellow;" class="fas fa-star" v-for="number in giudizio(movie.vote_average)"></i>

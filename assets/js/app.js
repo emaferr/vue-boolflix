@@ -19,13 +19,11 @@ const app = new Vue({
 
         risultatoFilm : [],
 
-        serieId : [],
-
         filmId : [],
 
         risultatoSerie : [],
 
-        castFilm : [],
+        serieId : [],
 
         input :'', 
 
@@ -68,7 +66,7 @@ const app = new Vue({
 
                     this.serieId = elemento2.id
 
-                    axios.get(this.urlCast + this.filmId + "/credits?api_key=" + this.apiKey)
+                    axios.get(this.urlCast + this.serieId + "/credits?api_key=" + this.apiKey)
                             .then(cast => {
 
                                 this.$set(elemento2, "cast", cast.data.cast.slice(0, 5));
