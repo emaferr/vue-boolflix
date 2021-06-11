@@ -39,7 +39,7 @@ const app = new Vue({
             const chiamataFilm = axios.get(this.urlFilms + this.apiKey + '&query=' + this.input);
             const chiamataSerie = axios.get(this.urlSerie + this.apiKey + '&query=' + this.input);
 
-            axios.all([chiamataFilm, chiamataSerie])
+            Promise.all([chiamataFilm, chiamataSerie])
 
             .then(resp => {
                 
@@ -69,11 +69,10 @@ const app = new Vue({
                         for (let h = 0; h < v.length; h++) {
                             const elemento = v[h];
 
-                            if (!this.generi.includes(elemento.name)){
+                            if (!this.generi.includes(elemento)){
 
-                                this.generi.push(elemento.name)
+                                this.generi.push(elemento)
 
-                                console.log(generi);
                             }
                         }
 
@@ -134,7 +133,7 @@ const app = new Vue({
     // Faccio in modo che in prima pagina appaiano i film e le serie piu popolari
     mounted() {
 
-        axios.get('https://api.themoviedb.org/3/movie/popular?api_key=b9f1f2833add21394f701a0d15da73aa&language=en-US&page=1')
+        axios.get('https://api.themoviedb.org/3/movie/popular?api_key=b9f1f2833add21394f701a0d15da73aa&language=it-IT&page=1')
 
         .then(resp =>{
 
@@ -164,9 +163,9 @@ const app = new Vue({
                         for (let h = 0; h < v.length; h++) {
                             const elemento = v[h];
 
-                            if (!this.generi.includes(elemento.name)){
+                            if (!this.generi.includes(elemento)){
 
-                                this.generi.push(elemento.name)
+                                this.generi.push(elemento)
 
                                 console.log(this.generi);
                             }
@@ -178,7 +177,7 @@ const app = new Vue({
 
             })
 
-        axios.get('https://api.themoviedb.org/3/tv/popular?api_key=b9f1f2833add21394f701a0d15da73aa&language=en-US&page=1')
+        axios.get('https://api.themoviedb.org/3/tv/popular?api_key=b9f1f2833add21394f701a0d15da73aa&language=it-IT&page=1')
 
         .then(resp =>{
 
