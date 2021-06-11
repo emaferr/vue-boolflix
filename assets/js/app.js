@@ -63,21 +63,6 @@ const app = new Vue({
                     .then(genere => {
 
                         this.$set(elemento, "genre", genere.data.genres);
-
-                        let v = genere.data.genres;
-
-                        for (let h = 0; h < v.length; h++) {
-                            const elemento = v[h];
-
-                            if (!this.generi.includes(elemento)){
-
-                                this.generi.push(elemento)
-
-                            }
-                        }
-
-                        
-
                     })
                         
                 }
@@ -95,14 +80,6 @@ const app = new Vue({
 
                         this.$set(elemento, "cast", cast.data.cast.slice(0, 5));
 
-                    })
-
-                    axios.get(this.urlCastSerie + this.serieId + "?api_key=" + this.apiKey)
-
-                    .then(genere => {
-
-                        this.$set(elemento, "genre", genere.data.genres);
-                        
                     })
 
                 }
@@ -158,18 +135,21 @@ const app = new Vue({
 
                     this.$set(elemento, "genre", genere.data.genres);
 
-                    let v = genere.data.genres;
+                    // let v = genere.data.genres;
 
-                        for (let h = 0; h < v.length; h++) {
-                            const elemento = v[h];
+                    // for (let h = 0; h < v.length; h++) {
+                    //     const elemento = v[h];
 
-                            if (!this.generi.includes(elemento)){
+                    //     if (!this.generi.includes(elemento.id)){
 
-                                this.generi.push(elemento)
+                    //         this.generi.push(elemento.id)
 
-                                console.log(this.generi);
-                            }
-                        }
+                    //     }
+
+                    //     this.genere = this.generi
+
+                        
+                    // }
 
                 })
                     
@@ -208,9 +188,8 @@ const app = new Vue({
 
             })
 
-            this.genere = this.generi
+            
         
     },
 
 })
-

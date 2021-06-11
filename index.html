@@ -1,178 +1,180 @@
-    <!doctype html>
+<!doctype html>
 
-    <html lang="en">
+<html lang="en">
 
-      <head>
+  <head>
 
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-        <!-- Style CSS -->
-        <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
 
-        <title>Boolflix</title>
+    <title>Boolflix</title>
 
-        <!-- Favicon -->
-        <link rel="icon" href="" type="image/png" />
+    <!-- Favicon -->
+    <link rel="icon" href="" type="image/png" />
 
-        <!-- Google fonts -->
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
-        <!-- Fontawesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
 
-      </head>
+  </head>
 
-      <body class="px-3 py-1">
+  <body class="px-3 py-1">
 
-        <div id="app">
+    <div id="app">
 
-          <header>
+      <header>
 
-            <nav class="navbar navbar-light">
-              <div class="container-fluid">
-                <a class="navbar-brand" href="http://127.0.0.1:5500/index.html">
-                  <img style="width: 150px;" src="./assets/img/128px-Netflix_2015_logo.svg.png" alt="">
-                </a>
-                <div class="cerca d-flex">
-                  <i style="color: #B7312B;" class="fas fa-search"></i>
-                  <input class="rounded-pill px-2" @keyup="ricerca" v-model="input" type="cerca" placeholder="Cerca" aria-label="">
-                </div>
-              </div>
-            </nav>
-      
-          </header>
-
-          <main>
-
-            <div class="contain justify-content-center my-4">
-
-              <!-- <select name="genere" id="genere" v-model="genere">
-                <option :value="generi">All</option>
-                <option v-for="genere in generi" :value="genere">{{genere}}</option>
-              </select> -->
-
-              <h3>Film</h3>
-
-              <div style="flex-wrap: nowrap;" class="row overflow-auto">
-
-                <div v-for="(movie, index) in risultatoFilm" class="card">
-
-                  <div class="front">
-                    <img style="height: 420px; padding: 0; border: none;" :src="poster(movie)" class="img-thumbnail" alt="...">
-                  </div>
-                  
-                  <div class="back overflow-auto px-3 py-5">              
-                    <ul>
-                      <li class="mb-2">
-                        <h5 class="d-inline">Titolo: </h5>
-                        <span>{{movie.title || movie.name}}</span>
-                      </li>
-                      <li class="mb-2">  
-                        <h5 class="d-inline">Titolo originale: </h5>
-                        <span>{{movie.original_title || movie.original_name}}</span>
-                      </li>
-                      <li class="mb-2">
-                        <h5 class="d-inline">Cast: </h5>          
-                        <span v-for="cast in movie.cast">{{cast.name}}, </span>
-                      </li>
-                      <li class="mb-2">
-                        <h5 class="d-inline">Genere: </h5>          
-                        <span v-for="genere in movie.genre">{{genere.name}},  </span>
-                      </li>
-                      <li class="mb-2">
-                        <img style="height: 20px; vertical-align: sub;" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" >
-                      </li>
-                      <li class="mb-2">
-                        <h5 class="d-inline">Voto: </h5>
-                        <i style="color: yellow;" class="fas fa-star" v-for="number in giudizio(movie.vote_average)"></i>
-                        <i class="far fa-star" v-for="number in 5 - giudizio(movie.vote_average)"></i>
-                      </li>
-                      <li>  
-                        <h5 class="d-inline">Descrizione: </h5>
-                        <span class="over">{{ movie.overview ? movie.overview : "Descrizione non disponibile" }}</span>
-                      </li>
-                    </ul>
-                    
-                  </div>
+        <nav class="navbar navbar-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="http://127.0.0.1:5500/index.html">
+              <img style="width: 150px;" src="./assets/img/128px-Netflix_2015_logo.svg.png" alt="">
+            </a>
+            <div class="cerca d-flex">
+              <i style="color: #B7312B;" class="fas fa-search"></i>
+              <input class="rounded-pill px-2" @keyup="ricerca" v-model="input" type="cerca" placeholder="Cerca" aria-label="">
+            </div>
+          </div>
+        </nav>
   
-                </div>
+      </header>
 
+      <main>
+
+        <div class="contain justify-content-center my-4">
+
+          <!-- <select name="genere" id="genere" v-model="genere">
+            <option :value="generi">All</option>
+            <option v-for="genere in generi" :value="genere">{{genere}}</option>
+          </select> -->
+
+          <h3>Film</h3>
+
+          <div style="flex-wrap: nowrap;" class="row overflow-auto">
+
+            <!-- <div v-if="movie.genre_ids.includes(genere)" v-for="(movie, index) in risultatoFilm" class="card"> -->
+
+            <div v-for="(movie, index) in risultatoFilm" class="card">
+
+              <div class="front">
+                <img style="height: 420px; padding: 0; border: none;" :src="poster(movie)" class="img-thumbnail" alt="...">
               </div>
-
-              <h3 class="mt-4">SerieTV</h3>
-
-              <div style="flex-wrap: nowrap;" class="row overflow-auto">
-
-                <div v-for="(movie, index) in risultatoSerie" class="card">
-
-                  <div class="front">
-                    <img style="height: 420px; padding: 0; border: none;" :src="poster(movie)" class="img-thumbnail" alt="...">
-                  </div>
-                  
-                  <div class="back overflow-auto px-3 py-5">              
-                    <ul>
-                      <li class="mb-2">
-                        <h5 class="d-inline">Titolo: </h5>
-                        <span>{{movie.name}}</span>
-                      </li>
-                      <li class="mb-2">  
-                        <h5 class="d-inline">Titolo originale: </h5>
-                        <span>{{movie.original_name}}</span>
-                      </li>
-                      <li class="mb-2">
-                        <h5 class="d-inline">Cast: </h5>          
-                        <span v-for="cast in movie.cast">{{cast.name}}, </span>
-                      </li>
-                      <li class="mb-2">
-                        <h5 class="d-inline">Genere: </h5>          
-                        <span v-for="genere in movie.genre">{{genere.name}},  </span>
-                      </li>
-                      <li class="mb-2">
-                        <img style="height: 20px; vertical-align: sub;" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" >
-                      </li>
-                      <li class="mb-2">
-                        <h5 class="d-inline">Voto: </h5>
-                        <i style="color: yellow;" class="fas fa-star" v-for="number in giudizio(movie.vote_average)"></i>
-                        <i class="far fa-star" v-for="number in 5 - giudizio(movie.vote_average)"></i>
-                      </li>
-                      <li class="">  
-                        <h5 class="d-inline">Descrizione: </h5>
-                        <span class="over">{{ movie.overview ? movie.overview : "Descrizione non disponibile" }}</span>
-                      </li>
-                    </ul>
-                    
-                  </div>
-  
-                </div>
-
-              </div>
-
               
+              <div class="back overflow-auto px-3 py-5">              
+                <ul>
+                  <li class="mb-2">
+                    <h5 class="d-inline">Titolo: </h5>
+                    <span>{{movie.title || movie.name}}</span>
+                  </li>
+                  <li class="mb-2">  
+                    <h5 class="d-inline">Titolo originale: </h5>
+                    <span>{{movie.original_title || movie.original_name}}</span>
+                  </li>
+                  <li class="mb-2">
+                    <h5 class="d-inline">Cast: </h5>          
+                    <span v-for="cast in movie.cast">{{cast.name}}, </span>
+                  </li>
+                  <li class="mb-2">
+                    <h5 class="d-inline">Genere: </h5>          
+                    <span v-for="genere in movie.genre">{{genere.name}},  </span>
+                  </li>
+                  <li class="mb-2">
+                    <img style="height: 20px; vertical-align: sub;" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" >
+                  </li>
+                  <li class="mb-2">
+                    <h5 class="d-inline">Voto: </h5>
+                    <i style="color: yellow;" class="fas fa-star" v-for="number in giudizio(movie.vote_average)"></i>
+                    <i class="far fa-star" v-for="number in 5 - giudizio(movie.vote_average)"></i>
+                  </li>
+                  <li>  
+                    <h5 class="d-inline">Descrizione: </h5>
+                    <span class="over">{{ movie.overview ? movie.overview : "Descrizione non disponibile" }}</span>
+                  </li>
+                </ul>
+                
+              </div>
 
             </div>
-            
-          </main>
-
-          <footer></footer>
-
-          <div v-if="error" id="errore">
-
-            {{error}}
 
           </div>
 
+          <h3 class="mt-4">SerieTV</h3>
+
+          <div style="flex-wrap: nowrap;" class="row overflow-auto">
+
+            <div v-for="(movie, index) in risultatoSerie" class="card">
+
+              <div class="front">
+                <img style="height: 420px; padding: 0; border: none;" :src="poster(movie)" class="img-thumbnail" alt="...">
+              </div>
+              
+              <div class="back overflow-auto px-3 py-5">              
+                <ul>
+                  <li class="mb-2">
+                    <h5 class="d-inline">Titolo: </h5>
+                    <span>{{movie.name}}</span>
+                  </li>
+                  <li class="mb-2">  
+                    <h5 class="d-inline">Titolo originale: </h5>
+                    <span>{{movie.original_name}}</span>
+                  </li>
+                  <li class="mb-2">
+                    <h5 class="d-inline">Cast: </h5>          
+                    <span v-for="cast in movie.cast">{{cast.name}}, </span>
+                  </li>
+                  <li class="mb-2">
+                    <h5 class="d-inline">Genere: </h5>          
+                    <span v-for="genere in movie.genre">{{genere.name}},  </span>
+                  </li>
+                  <li class="mb-2">
+                    <img style="height: 20px; vertical-align: sub;" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" >
+                  </li>
+                  <li class="mb-2">
+                    <h5 class="d-inline">Voto: </h5>
+                    <i style="color: yellow;" class="fas fa-star" v-for="number in giudizio(movie.vote_average)"></i>
+                    <i class="far fa-star" v-for="number in 5 - giudizio(movie.vote_average)"></i>
+                  </li>
+                  <li class="">  
+                    <h5 class="d-inline">Descrizione: </h5>
+                    <span class="over">{{ movie.overview ? movie.overview : "Descrizione non disponibile" }}</span>
+                  </li>
+                </ul>
+                
+              </div>
+
+            </div>
+
+          </div>
+
+          
+
         </div>
+        
+      </main>
 
-        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="./assets/js/app.js"></script>
+      <footer></footer>
 
-      </body>
+      <div v-if="error" id="errore">
 
-    </html>
+        {{error}}
+
+      </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./assets/js/app.js"></script>
+
+  </body>
+
+</html>
