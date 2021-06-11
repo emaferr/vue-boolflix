@@ -30,7 +30,6 @@
 
       <body class="px-3 py-1">
 
-        <!-- Creare un layout base con una searchbar (una input e un button) in cui possiamo scrivere completamente o parzialmente il nome di un film. Possiamo, cliccando il  bottone, cercare sull’API tutti i film che contengono ciò che ha scritto l’utente. -->
         <div id="app">
 
           <header>
@@ -53,12 +52,19 @@
 
             <div class="contain justify-content-center my-4">
 
+              <!-- <select name="genere" id="genere" v-model="genere">
+                <option selected :value="generi">All</option>
+                <option v-for="genere in generi" :value="genere">{{genere}}</option>
+              </select> -->
+
               <h3>Film</h3>
 
               <div style="flex-wrap: nowrap;" class="row overflow-auto">
 
                 <div v-for="(movie, index) in risultatoFilm" class="card">
-
+                
+                  <!-- <h3 style="color: white;">{{index}}</h3> -->
+                  
                   <div class="front">
                     <img style="height: 420px; padding: 0; border: none;" :src="poster(movie)" class="img-thumbnail" alt="...">
                   </div>
@@ -74,16 +80,15 @@
                         <span>{{movie.original_title || movie.original_name}}</span>
                       </li>
                       <li class="mb-2">
-                        <h5 class="d-inline">Lingua: </h5>
-                        <img style="height: 20px; vertical-align: sub;" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" >
-                      </li>
-                      <li class="mb-2">
                         <h5 class="d-inline">Cast: </h5>          
                         <span v-for="cast in movie.cast">{{cast.name}}, </span>
                       </li>
                       <li class="mb-2">
                         <h5 class="d-inline">Genere: </h5>          
                         <span v-for="genere in movie.genre">{{genere.name}},  </span>
+                      </li>
+                      <li class="mb-2">
+                        <img style="height: 20px; vertical-align: sub;" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" >
                       </li>
                       <li class="mb-2">
                         <h5 class="d-inline">Voto: </h5>
@@ -123,16 +128,15 @@
                         <span>{{movie.original_name}}</span>
                       </li>
                       <li class="mb-2">
-                        <h5 class="d-inline">Lingua: </h5>
-                        <img style="height: 20px; vertical-align: sub;" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" >
-                      </li>
-                      <li class="mb-2">
                         <h5 class="d-inline">Cast: </h5>          
                         <span v-for="cast in movie.cast">{{cast.name}}, </span>
                       </li>
                       <li class="mb-2">
                         <h5 class="d-inline">Genere: </h5>          
                         <span v-for="genere in movie.genre">{{genere.name}},  </span>
+                      </li>
+                      <li class="mb-2">
+                        <img style="height: 20px; vertical-align: sub;" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" >
                       </li>
                       <li class="mb-2">
                         <h5 class="d-inline">Voto: </h5>
@@ -167,7 +171,6 @@
 
         </div>
 
-        <!-- Optional JavaScript; choose one of the two! -->
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="./assets/js/app.js"></script>

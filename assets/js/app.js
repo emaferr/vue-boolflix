@@ -1,6 +1,3 @@
-// Milestone 1: OK
-// Milestone 2: OK
-
 const app = new Vue({
 
     el: '#app',
@@ -11,17 +8,23 @@ const app = new Vue({
 
         urlFilms : 'https://api.themoviedb.org/3/search/movie?api_key=',
 
-        urlSerie : 'https://api.themoviedb.org/3/search/tv?api_key=',
-
-        urlCast : "https://api.themoviedb.org/3/movie/",
+        urlCastFilm : "https://api.themoviedb.org/3/movie/",
 
         risultatoFilm : [],
 
         filmId : [],
 
+        urlSerie : 'https://api.themoviedb.org/3/search/tv?api_key=',
+
+        urlCastSerie : 'https://api.themoviedb.org/3/tv/',
+
         risultatoSerie : [],
 
         serieId : [],
+
+        generi : [],
+
+        genere : '',
 
         input :'', 
 
@@ -48,18 +51,33 @@ const app = new Vue({
 
                     this.filmId = elemento.id
 
-                    axios.get(this.urlCast + this.filmId + "/credits?api_key=" + this.apiKey)
+                    axios.get(this.urlCastFilm + this.filmId + "/credits?api_key=" + this.apiKey)
                     .then(cast => {
 
                         this.$set(elemento, "cast", cast.data.cast.slice(0, 5));
 
                     })
              
-                    axios.get(this.urlCast + this.filmId + "?api_key=" + this.apiKey)
+                    axios.get(this.urlCastFilm + this.filmId + "?api_key=" + this.apiKey)
 
                     .then(genere => {
 
                         this.$set(elemento, "genre", genere.data.genres);
+
+                        let v = genere.data.genres;
+
+                        for (let h = 0; h < v.length; h++) {
+                            const elemento = v[h];
+
+                            if (!this.generi.includes(elemento.name)){
+
+                                this.generi.push(elemento.name)
+
+                                console.log(generi);
+                            }
+                        }
+
+                        
 
                     })
                         
@@ -73,14 +91,14 @@ const app = new Vue({
 
                     this.serieId = elemento.id
 
-                    axios.get(this.urlCast + this.serieId + "/credits?api_key=" + this.apiKey)
+                    axios.get(this.urlCastSerie + this.serieId + "/credits?api_key=" + this.apiKey)
                     .then(cast => {
 
                         this.$set(elemento, "cast", cast.data.cast.slice(0, 5));
 
                     })
 
-                    axios.get(this.urlCast + this.serieId + "?api_key=" + this.apiKey)
+                    axios.get(this.urlCastSerie + this.serieId + "?api_key=" + this.apiKey)
 
                     .then(genere => {
 
@@ -128,18 +146,31 @@ const app = new Vue({
 
                 this.filmId = elemento.id
 
-                axios.get(this.urlCast + this.filmId + "/credits?api_key=" + this.apiKey)
+                axios.get(this.urlCastFilm + this.filmId + "/credits?api_key=" + this.apiKey)
                 .then(cast => {
 
                     this.$set(elemento, "cast", cast.data.cast.slice(0, 5));
 
                 })
          
-                axios.get(this.urlCast + this.filmId + "?api_key=" + this.apiKey)
+                axios.get(this.urlCastFilm + this.filmId + "?api_key=" + this.apiKey)
 
                 .then(genere => {
 
                     this.$set(elemento, "genre", genere.data.genres);
+
+                    let v = genere.data.genres;
+
+                        for (let h = 0; h < v.length; h++) {
+                            const elemento = v[h];
+
+                            if (!this.generi.includes(elemento.name)){
+
+                                this.generi.push(elemento.name)
+
+                                console.log(this.generi);
+                            }
+                        }
 
                 })
                     
@@ -159,14 +190,14 @@ const app = new Vue({
 
                 this.serieId = elemento.id
 
-                axios.get(this.urlCast + this.serieId + "/credits?api_key=" + this.apiKey)
+                axios.get(this.urlCastSerie + this.serieId + "/credits?api_key=" + this.apiKey)
                 .then(cast => {
 
                     this.$set(elemento, "cast", cast.data.cast.slice(0, 5));
 
                 })
          
-                axios.get(this.urlCast + this.serieId + "?api_key=" + this.apiKey)
+                axios.get(this.urlCastSerie + this.serieId + "?api_key=" + this.apiKey)
 
                 .then(genere => {
 
@@ -177,6 +208,8 @@ const app = new Vue({
             }
 
             })
+
+            this.genere = this.generi
         
     },
 

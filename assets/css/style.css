@@ -7,6 +7,9 @@ body{
     padding: .75rem;
 }
 
+.card span{
+    color: dimgray;
+}
 .back ul{
     list-style: none;
     padding: 0;
@@ -46,8 +49,10 @@ transform: rotateY(180deg);
 opacity: 0;
 -webkit-backface-visibility: visible;
 backface-visibility: visible;
-background: #333741;
+background: #00000063;
 color: white;
+border-style: inset;
+border: 3px solid #b7322b4f;
 }
   
 .card {
